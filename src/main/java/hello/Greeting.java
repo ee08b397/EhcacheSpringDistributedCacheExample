@@ -1,10 +1,12 @@
 package hello;
 
+import java.io.Serializable;
+
 /**
  * Created by song on 9/8/16.
  */
 
-public class Greeting {
+public class Greeting implements Serializable {
 
     private final long id;
     private final String name;

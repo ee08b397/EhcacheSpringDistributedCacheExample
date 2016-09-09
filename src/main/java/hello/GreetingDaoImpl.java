@@ -1,11 +1,15 @@
 package hello;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
-
 /**
  * Created by song on 9/9/16.
  */
@@ -13,6 +17,8 @@ import java.util.concurrent.atomic.AtomicLong;
 @Component
 public class GreetingDaoImpl implements GreetingDao {
 
+
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(GreetingDaoImpl.class);
     private Map<String, Greeting> greetings;
     private final AtomicLong counter = new AtomicLong();
 
@@ -22,15 +28,14 @@ public class GreetingDaoImpl implements GreetingDao {
         this.greetings.put("a", new Greeting(counter.incrementAndGet(), "a", 450));
     }
 
-    @Override
     public Greeting findByName(String name) {
         queryDelay(3000L);
-        System.out.println(String.format("loading %s ... ", name));
+        logger.info(String.format("loading %s ... ", name));
         return searchOrCreate(name);
     }
 
     public void dumpCache() {
-        System.out.println(new String(new char[10]).replace("\0", "="));
+        logger.info(new String(new char[10]).replace("\0", "="));
         for (Greeting greeting : this.greetings.values()) {
             System.out.println(greeting);
         }
