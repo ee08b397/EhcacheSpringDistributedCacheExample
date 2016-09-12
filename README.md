@@ -73,18 +73,18 @@ through `example-cache.xml`)
 1. Usually `@Cachable` is used in logic, such as repository or Dao implimentation. In this case, [`GreetingDaoImpl`](src/main/java/hello/GreetingDaoImpl.java). With restful, `@Cachable` needs to be in request level (`@RequestMapping` in [`GreetingController`](src/main/java/hello/GreetingController.java)
 
 2. If context cannot load exception thrown, change `4.1.4` to `4.2.4` in [example-ehcache.xml](src/main/resources/example-ehcache.xml)
-```xml
-   <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>4.2.4.RELEASE</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context-support</artifactId>
-        <version>4.2.4.RELEASE</version>
-    </dependency>
-```
+   ```xml
+      <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-context</artifactId>
+           <version>4.2.4.RELEASE</version>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-context-support</artifactId>
+           <version>4.2.4.RELEASE</version>
+       </dependency>
+   ```
 
 3. Changing the `cacheManagerPeerListenerFactory > properties > port` in  [example-ehcache.xml](src/main/resources/example-ehcache.xml) and make each instance a port is no fun. Thinking about a way to deliver automatically.
 
