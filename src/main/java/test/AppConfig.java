@@ -26,7 +26,7 @@ public class AppConfig {
     @Bean
     public EhCacheManagerFactoryBean ehCacheCacheManager() {
         EhCacheManagerFactoryBean cmfb = new EhCacheManagerFactoryBean();
-        cmfb.setConfigLocation(new ClassPathResource("ehcache.xml"));
+        cmfb.setConfigLocation(new ClassPathResource("example-ehcache.xml"));
         cmfb.setShared(true);
         return cmfb;
     }

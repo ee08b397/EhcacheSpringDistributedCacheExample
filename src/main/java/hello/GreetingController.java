@@ -26,8 +26,8 @@ public class GreetingController {
     }
 
     @Cacheable("greetingRequest")
-    @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+    @RequestMapping("/test")
+    public Greeting greeting(@RequestParam(value="name", defaultValue="Songxiao") String name) {
         return this.greetingDaoImpl.findByName(name);
     }
 }

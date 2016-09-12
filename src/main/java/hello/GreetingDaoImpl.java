@@ -14,38 +14,13 @@ import java.util.concurrent.atomic.AtomicLong;
 @Component
 public class GreetingDaoImpl implements GreetingDao {
 
-
     private static final Logger logger = (Logger) LoggerFactory.getLogger(GreetingDaoImpl.class);
-    private Map<String, Greeting> greetings;
     private final AtomicLong counter = new AtomicLong();
-
-    public GreetingDaoImpl() {
-        this.greetings = new HashMap<String, Greeting>();
-        this.greetings.put("World", new Greeting(counter.incrementAndGet(), "World", 100));
-        this.greetings.put("a", new Greeting(counter.incrementAndGet(), "a", 450));
-    }
 
     public Greeting findByName(String name) {
         queryDelay(3000L);
         logger.info(String.format("loading %s ... ", name));
-        return searchOrCreate(name);
-    }
-
-    public void dumpCache() {
-        logger.info(new String(new char[10]).replace("\0", "="));
-        for (Greeting greeting : this.greetings.values()) {
-            System.out.println(greeting);
-        }
-    }
-
-    private Greeting searchOrCreate(String name) {
-        if (this.greetings.containsKey(name)) {
-            return this.greetings.get(name);
-        }
-        Greeting greeting = new Greeting(counter.incrementAndGet(), name);
-        this.greetings.put(name, greeting);
-        dumpCache();
-        return greeting;
+        return new Greeting(counter.incrementAndGet(), name);
     }
 
     private void queryDelay(long seconds){

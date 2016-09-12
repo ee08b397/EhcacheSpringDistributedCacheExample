@@ -1,7 +1,12 @@
 #!/bin/bash
 
-firefox --new-window http://localhost:8080/ &
-firefox --new-window http://localhost:9000/ &
+if [ "$1" = "f" ] || [ "$1" = "firefox" ]; then
+  echo "Opening 2 firefox windows"
+  firefox --new-window http://localhost:8080/test &
+  firefox --new-window http://localhost:9000/test &
+else
+  echo "Opening 2 chrome windows"
+  google-chrome --new-window http://localhost:8080/test &
+  google-chrome --new-window http://localhost:9000/test &
+fi
 
-# google-chrome --new-window http://localhost:8080/ &
-# google-chrome --new-window http://localhost:9000/ &
