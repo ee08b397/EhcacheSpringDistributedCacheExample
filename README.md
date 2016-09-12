@@ -89,4 +89,3 @@ through `example-cache.xml`)
 3. Changing the `cacheManagerPeerListenerFactory > properties > port` in  [example-ehcache.xml](src/main/resources/example-ehcache.xml) and make each instance a port is no fun. Thinking about a way to deliver automatically.
 
 
-
